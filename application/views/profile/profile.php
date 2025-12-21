@@ -58,6 +58,10 @@
                                         <td><?php echo $member['father']; ?></td>
                                     </tr>
                                     <tr>
+                                        <th>Mother Name</th>
+                                        <td><?php echo $member['mother']; ?></td>
+                                    </tr>
+                                    <tr>
                                         <th>Gender</th>
                                         <td><?php echo $member['gender']; ?></td>
                                     </tr>
@@ -90,6 +94,14 @@
                                         <?php
                                             $input=array("name"=>"father","id"=>"father","Placeholder"=>"Father/Husband Name","class"=>"form-control",
                                                     "autocomplete"=>"off","value"=>$member['father']);
+                                            echo form_input($input);
+                                        ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="father" class=" form-control-label">Mother Name</label>
+                                        <?php
+                                            $input=array("name"=>"mother","id"=>"mother","Placeholder"=>"Mother Name","class"=>"form-control",
+                                                    "autocomplete"=>"off","value"=>$member['mother']);
                                             echo form_input($input);
                                         ?>
                                     </div>

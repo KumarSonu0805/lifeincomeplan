@@ -65,7 +65,7 @@
                                             else{
                                                 $br="";
                                                 if($status==0){
-                                                    $message="Please Activate Your Account!";
+                                                    $message="";//"Please Activate Your Account!";
                                                     $br="<br>";
                                                 }
                                                 elseif($status==2){
@@ -126,8 +126,7 @@
                                                                             echo '<span class="text-success">Active<span>';
                                                                         }
                                                                         else{
-                                                                            echo '<span class="text-danger">In-Active<span><br>
-                                                                    <a href="'.base_url('activateaccount/').'" class="btn btn-sm btn-success">Activate Your Account</a>';
+                                                                            echo '<span class="text-danger">In-Active<span>';
                                                                         }
                                                                     ?>
                                                                 </td>

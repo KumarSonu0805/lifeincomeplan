@@ -267,7 +267,7 @@ class Home extends MY_Controller {
 	
     public function runquery(){
         $query=array(
-            "ALTER TABLE `pg_withdrawals` ADD `reason` VARCHAR(200) NULL DEFAULT NULL AFTER `approve_date`;"
+            "ALTER TABLE `li_members` ADD `mother` VARCHAR(100) NOT NULL AFTER `father`;"
         );
         foreach($query as $sql){
             if(!$this->db->query($sql)){

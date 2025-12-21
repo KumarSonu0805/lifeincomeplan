@@ -1,4 +1,22 @@
 
+
+<!--Son/D/w/O- ...
+Mother's name -....
+Occupation-....
+Qualyfication-...
+A.Income-...
+Meital status....
+Gender ......
+Nominee name -.... , Age..., relation.......
+Place/City of birth.......
+Gov. service about -.........yrs.
+Address - ....
+Bank name.....
+Account no  ........
+Ifs code.......
+Branch .......
+        Live.   Age            Death-->
+
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
@@ -80,6 +98,47 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
+                                                <?php
+                                                    $attributes=array("id"=>"mobile","Placeholder"=>"Mobile","autocomplete"=>"off","pattern"=>"[0-9]{10}","title"=>"Enter Valid Mobile No.","maxlength"=>"10");
+                                                    echo create_form_input("text","mobile","Mobile",true,'',$attributes);  
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <?php
+                                                    $attributes=array("id"=>"email","Placeholder"=>"Email","autocomplete"=>"off");
+                                                    echo create_form_input("email","email","Email",false,'',$attributes);  
+                                                ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <?php
+                                                    echo create_form_input("date","dob","Date Of Birth",true,'',array("id"=>"dob"));  
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <?php
+                                                    $attributes=array("id"=>"aadhar","Placeholder"=>"Aadhar No.","pattern"=>"[0-9]{12}","title"=>"Enter Valid Aadhar No.","autocomplete"=>"off","maxlength"=>"12");
+                                                    echo create_form_input("text","aadhar","Aadhar No.",true,'',$attributes);  
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <?php
+                                                    $attributes=array("id"=>"pan","Placeholder"=>"PAN No.","pattern"=>"[A-Za-z0-9]{10}","title"=>"Enter Valid Pan No.","autocomplete"=>"off","maxlength"=>"10");
+                                                    echo create_form_input("text","pan","PAN No.",true,'',$attributes);  
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
                                                <?php
                                                     $attributes=array("id"=>"father","Placeholder"=>"Father's Name","autocomplete"=>"off");
                                                     echo create_form_input("text","father","Father's Name",false,'',$attributes);  
@@ -88,26 +147,9 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <?php
-                                                    $attributes=array("id"=>"mobile","Placeholder"=>"Mobile","autocomplete"=>"off","pattern"=>"[0-9]{10}","title"=>"Enter Valid Mobile No.","maxlength"=>"10");
-                                                    echo create_form_input("text","mobile","Mobile",true,'',$attributes);  
-                                                ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4 hidden">
-                                            <div class="form-group">
-                                                <?php
-                                                    $attributes=array("id"=>"email","Placeholder"=>"Email","autocomplete"=>"off");
-                                                    echo create_form_input("email","email","Email",false,'',$attributes);  
-                                                ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <?php
-                                                    echo create_form_input("date","dob","Date Of Birth",false,'',array("id"=>"dob"));  
+                                               <?php
+                                                    $attributes=array("id"=>"mother","Placeholder"=>"Mother's Name","autocomplete"=>"off");
+                                                    echo create_form_input("text","mother","Mother's Name",false,'',$attributes);  
                                                 ?>
                                             </div>
                                         </div>
@@ -135,8 +177,6 @@
                                                 ?>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <?php
@@ -152,14 +192,6 @@
                                                 <?php
                                                     $mstatus=array(""=>"Select","Married"=>"Married","Unmarried"=>"Unmarried");
                                                     echo create_form_input("select","mstatus","Marital Status",false,'',array("id"=>"mstatus"),$mstatus); 
-                                                ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <?php
-                                                    $attributes=array("id"=>"aadhar","Placeholder"=>"Aadhar No.","pattern"=>"[0-9]{12}","title"=>"Enter Valid Aadhar No.","autocomplete"=>"off","maxlength"=>"12");
-                                                    echo create_form_input("text","aadhar","Aadhar No.",false,'',$attributes);  
                                                 ?>
                                             </div>
                                         </div>
@@ -209,14 +241,6 @@
                                                 <?php
                                                     $attributes=array("id"=>"branch","Placeholder"=>"Branch","autocomplete"=>"off");
                                                     echo create_form_input("text","branch","Branch",false,'',$attributes);  
-                                                ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <?php
-                                                    $attributes=array("id"=>"pan","Placeholder"=>"PAN No.","pattern"=>"[A-Za-z0-9]{10}","title"=>"Enter Valid Pan No.","autocomplete"=>"off","maxlength"=>"10");
-                                                    echo create_form_input("text","pan","PAN No.",false,'',$attributes);  
                                                 ?>
                                             </div>
                                         </div>

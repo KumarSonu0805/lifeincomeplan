@@ -12,11 +12,12 @@ class Members extends MY_Controller {
 	}
 	
 	public function index(){
-		if($this->session->user===NULL){
+        $this->registration();
+		/*if($this->session->user===NULL){
 			$this->register();
 		}else{
 			$this->registration();
-		}
+		}*/
 	}
 	
 	public function registration(){
@@ -245,6 +246,7 @@ class Members extends MY_Controller {
 				$memberdata['name']=$data['name'];
 				$memberdata['dob']=$data['dob'];
 				$memberdata['father']=$data['father'];
+				$memberdata['mother']=$data['mother'];
 				$memberdata['gender']=$data['gender'];
 				$memberdata['mstatus']=$data['mstatus'];
 				$memberdata['mobile']=$data['mobile'];
