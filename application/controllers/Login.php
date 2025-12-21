@@ -67,6 +67,7 @@ class Login extends MY_Controller {
         if($this->session->sess_type=='admin_access'){
             $getuser=$this->account->getuser(["id"=>1]);
             $user=$getuser['user'];
+            $this->session->unset_userdata('sess_type');
             $this->startsession($user);
             loginredirect();
         }

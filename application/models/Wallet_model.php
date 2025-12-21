@@ -2,6 +2,7 @@
 class Wallet_model extends CI_Model{
 	
     var $status=false;
+    var $direct=500;
     
 	function __construct(){
 		parent::__construct(); 
@@ -32,7 +33,7 @@ class Wallet_model extends CI_Model{
                 foreach($newdirects as $member){
                     if(!in_array($member['regid'],$member_ids)){
                         $member_id=$member['regid'];
-                        $amount=$member['direct'];
+                        $amount=$this->direct;
                         if($amount>0){
                             $data=array("date"=>$date,"type"=>"ewallet","regid"=>$regid,"member_id"=>$member_id,
                                         "amount"=>$amount,"remarks"=>"Direct Income","added_on"=>date('Y-m-d H:i:s'),
@@ -50,17 +51,21 @@ class Wallet_model extends CI_Model{
         }
     }
 	
-	function getLevelPercentage($level) {
-        if ($level == 2) return 10;
-        if ($level == 3) return 5; 
-        if ($level == 4) return 4;
-        if ($level == 5) return 3.5;
-        if ($level == 6) return 3;
-        if ($level == 7) return 2.5;
-        if ($level == 8) return 2;
-        if ($level == 9) return 1.5;
-        if ($level == 10) return 1;
-        if ($level == 11) return 0.5;
+	function getLevelAmount($level) {
+        if ($level == 2) return 30;
+        if ($level == 3) return 28; 
+        if ($level == 4) return 26;
+        if ($level == 5) return 24;
+        if ($level == 6) return 23;
+        if ($level == 7) return 22;
+        if ($level == 8) return 21;
+        if ($level == 9) return 20;
+        if ($level == 10) return 19;
+        if ($level == 11) return 18;
+        if ($level == 12) return 17;
+        if ($level == 13) return 16;
+        if ($level == 14) return 15;
+        if ($level == 15) return 11;
         return 0;
 	}
 	
@@ -75,10 +80,8 @@ class Wallet_model extends CI_Model{
                 foreach($levelmembers as $levelmember){
                     $member_id=$levelmember['member_id'];
                     $level=$levelmember['level'];
-					$amount=$levelmember['amount'];
-                    $rate=$this->getLevelPercentage($level);
-                    if($rate>0 && $amount>0){
-                        $amount=($amount*$rate)/100;
+                    $amount=$this->getLevelAmount($level);
+                    if($amount>0){
                         $data=array("date"=>$date,"type"=>"ewallet","regid"=>$regid,"member_id"=>$member_id,'level'=>$level,
                                     "amount"=>$amount,"remarks"=>"Level Income","added_on"=>date('Y-m-d H:i:s'),
                                     "updated_on"=>date('Y-m-d H:i:s'));
