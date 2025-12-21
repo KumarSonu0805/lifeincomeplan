@@ -516,6 +516,33 @@ class Members extends MY_Controller {
             redirect('login/userlogin/'.$username);
         }
     }
+    
+    public function adminactivate(){
+        $data=$this->input->post();
+        $encid=$data['id'];
+        $policy_no=$data['policy_no'];
+        $getuser=$this->account->getuser(["md5(concat('regid-',id))"=>$encid]);
+        if($getuser['status']===true){
+            $user=$getuser['user'];
+            $member=$this->member->getmemberid($user['username'],'not activated');
+            if($member['regid']==0){
+                $this->session->set_flashdata('err_msg',$member['name']);
+            }
+            else{
+                $data=array('regid'=>$user['id'],'policy_no'=>$policy_no);
+                $result=$this->member->activatemember($data);
+                if($result['status']===true){
+                    $text="Activated";
+                    $this->session->set_flashdata("msg","Member Id $text Successfully");
+                }
+                else{
+                    $this->session->set_flashdata("err_msg",$result['message']);
+                }
+            }
+        }
+    }
+    
+    
 	/*public function upgrade(){
 		checklogin();
 		if($this->session->role=='admin'){

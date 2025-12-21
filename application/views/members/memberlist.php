@@ -33,6 +33,19 @@
 			$('#position,#from,#to').change(function(){
 				getResult();
 			});
+            
+            $('body').on('click','.activate',function(){
+                var id=$(this).val();
+                var policy_no=prompt("Enter Policy Number");
+                if(policy_no!=''){
+                   $.post('<?= base_url('members/adminactivate') ?>',{id:id,policy_no:policy_no},function(){
+                       window.location.reload();
+                   });
+                }
+                else{
+                    alert("Enter Policy Number!")
+                }
+            });
         });
 		
         function getResult(){

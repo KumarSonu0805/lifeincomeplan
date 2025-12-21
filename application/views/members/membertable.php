@@ -9,7 +9,7 @@
             <th>Sponsor Name</th>
             <th>Joining Date</th>
             <th>Activation Date</th>
-            <th>Package</th>
+            <th>Policy No</th>
             <th class="select-filter">Status</th>
             <?php if($this->session->role=='admin'){ ?>
            	<th>Password</th>
@@ -39,7 +39,7 @@
             <td><?php echo $member['refname']; ?></td>
             <td><?php echo date('d-m-Y h:i A',strtotime($member['date'].' '.$member['time'])); ?></td>
             <td><?php if(!empty($member['activation_date']))echo date('d-m-Y h:i A',strtotime($member['activation_date'])); ?></td>
-            <td><?php echo $member['package']; ?></td>
+            <td><?php echo $member['policy_no']; ?></td>
             <td><?php echo $status; ?></td>
             <?php if($this->session->role=='admin'){ ?>
             <td>
@@ -48,6 +48,13 @@
                 <span class="hidden text-danger" onClick="$(this).parent().find('span').addClass('hidden');$(this).parent().find('a').show();"><i class="fa fa-times"></i></span>
             </td>
             <td>
+                <?php
+                    if($member['status']==0){
+                ?>
+                <button type="button" value="<?= md5('regid-'.$member['regid']) ?>" class="btn btn-sm btn-success activate">Activate</button>
+                <?php
+                    }
+                ?>
             	<?php /*?><a href="<?php echo base_url('members/editmember/'.$member['regid']); ?>" class="btn btn-xs btn-info"><i class=" fa fa-edit"></i> Edit</a><?php */?>
             </td>
             <?php } ?>

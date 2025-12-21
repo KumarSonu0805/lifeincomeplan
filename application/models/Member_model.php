@@ -1,6 +1,6 @@
 <?php
 class Member_model extends CI_Model{
-	var $user_prefix="PGP";
+	var $user_prefix="LIP";
 	var $random_user=true;
 	var $pool_size=2; // pool count
 	var $downline_table="members";
@@ -339,7 +339,7 @@ class Member_model extends CI_Model{
         // Query to fetch hierarchy using variables
         $query = "
             SELECT u.id as regid,u.username,u.name,u.vp as password,concat_ws(',',m.district,m.state) as location,
-							u2.username as ref,u2.name as refname,m.date,m.time,m.activation_date,ifnull(t4.package,'--') as package,m.status
+							u2.username as ref,u2.name as refname,m.date,m.time,m.activation_date,ifnull(t4.package,'--') as package,m.status,m.policy_no
             FROM (
                 SELECT regid, @pv := CONCAT(@pv, ',', regid) AS pv
                 FROM (
@@ -584,11 +584,10 @@ class Member_model extends CI_Model{
 	public function activatemember($data){
 		$regid=$data['regid'];
 		$updata['activation_date']=date('Y-m-d H:i:s');
-		$updata['package_id']=$data['package_id'];
+		$updata['policy_no']=$data['policy_no'];
 		$updata['status']=1;
 		$data['date']=date('Y-m-d');
 		if($this->db->update("members",$updata,array("regid"=>$regid))){
-			//$added_on=$this->Epin_model->updatepinstatus($data['epin'],$regid);
 			return true;
 		}
 		else{

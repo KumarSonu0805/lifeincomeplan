@@ -119,6 +119,10 @@
                                                                 <td><?= !empty($member['activation_date']) && $member['activation_date']!='0000-00-00'?date('d-m-Y h:i A',strtotime($member['activation_date'])):'--'; ?></td>
                                                             </tr>
                                                             <tr>
+                                                                <th>Policy No</th>
+                                                                <td><?= $member['policy_no']??'--'; ?></td>
+                                                            </tr>
+                                                            <tr>
                                                                 <th>Status</th>
                                                                 <td>
                                                                     <?php
