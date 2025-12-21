@@ -2,7 +2,7 @@
             <div class="login-box">
                 <!-- /.login-logo -->
                 <div class="card card-outline card-oflep">
-                    <div class="card-header text-center" style="background-color: #344291;">
+                    <div class="card-header text-center">
                     <a href="<?= base_url(); ?>" class="h1"><img src="<?= file_url('assets/images/logo.png') ?>" alt="<?= PROJECT_NAME ?> Logo" class="img-fluid"></a>
                     </div>
                     <div class="card-body">
