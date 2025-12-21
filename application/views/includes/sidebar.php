@@ -138,7 +138,7 @@
                                         </a>
                                     </li><?php */?>
                                     <?php if($this->session->role=='admin'){ ?>
-                                    
+                                    <?php /*?>
                                     <li class="nav-item">
                                         <a href="<?= base_url("members/activationrequests/"); ?>" class="nav-link <?= activate_menu('members/activationrequests'); ?>">
                                             <i class="far fa-circle nav-icon"></i>
@@ -150,7 +150,7 @@
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Approved Activation List</p>
                                         </a>
-                                    </li>
+                                    </li><?php */?>
                                     <li class="nav-item">
                                         <a href="<?php echo base_url("members/kyc/"); ?>" class="nav-link <?php echo activate_menu("members/kyc"); ?>">
                                             <i class="far fa-circle nav-icon"></i>
