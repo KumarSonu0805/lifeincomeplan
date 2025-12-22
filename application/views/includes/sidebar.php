@@ -92,7 +92,7 @@
                                     <p>Change Password</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item d-none">
                                 <a href="<?= base_url('profile/adminaccdetails/'); ?>" class="nav-link <?= activate_menu('profile/adminaccdetails'); ?>">
                                     <i class="nav-icon fas fa-list"></i>
                                     <p>Admin Account Details</p>
