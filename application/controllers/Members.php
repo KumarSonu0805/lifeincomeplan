@@ -247,6 +247,9 @@ class Members extends MY_Controller {
 				$memberdata['dob']=$data['dob'];
 				$memberdata['father']=$data['father'];
 				$memberdata['mother']=$data['mother'];
+				$memberdata['occupation']=$data['occupation'];
+				$memberdata['qualification']=$data['qualification'];
+				$memberdata['a_income']=$data['a_income'];
 				$memberdata['gender']=$data['gender'];
 				$memberdata['mstatus']=$data['mstatus'];
 				$memberdata['mobile']=$data['mobile'];

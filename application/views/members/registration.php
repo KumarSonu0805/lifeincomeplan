@@ -1,12 +1,13 @@
 
 
-<!--Son/D/w/O- ...
-Mother's name -....
-Occupation-....
-Qualyfication-...
-A.Income-...
-Meital status....
-Gender ......
+<!--
+-- Son/D/w/O- ...
+-- Mother's name -....
+-- Occupation-....
+-- Qualyfication-...
+-- A.Income-...
+-- Meital status....
+-- Gender ......
 Nominee name -.... , Age..., relation.......
 Place/City of birth.......
 Gov. service about -.........yrs.
@@ -153,7 +154,39 @@ Branch .......
                                                 ?>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 hidden">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                               <?php
+                                                    $attributes=array("id"=>"occupation","Placeholder"=>"Occupation","autocomplete"=>"off");
+                                                    echo create_form_input("text","occupation","Occupation",false,'',$attributes);  
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                               <?php
+                                                    $attributes=array("id"=>"qualification","Placeholder"=>"Qualification","autocomplete"=>"off");
+                                                    echo create_form_input("text","qualification","Qualification",false,'',$attributes);  
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                               <?php
+                                                    $attributes=array("id"=>"a_income","Placeholder"=>"Annual Income","autocomplete"=>"off");
+                                                    echo create_form_input("text","a_income","Annual Income",false,'',$attributes);  
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <?php
+                                                    $mstatus=array(""=>"Select","Married"=>"Married","Unmarried"=>"Unmarried");
+                                                    echo create_form_input("select","mstatus","Marital Status",false,'',array("id"=>"mstatus"),$mstatus); 
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <?php
                                                     $gender=array(""=>"Select Gender","Male"=>"Male","Female"=>"Female");
@@ -182,16 +215,6 @@ Branch .......
                                                 <?php
                                                     $attributes=array("id"=>"state","Placeholder"=>"State","autocomplete"=>"off");
                                                     echo create_form_input("text","state","State",false,'',$attributes);  
-                                                ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row hidden">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <?php
-                                                    $mstatus=array(""=>"Select","Married"=>"Married","Unmarried"=>"Unmarried");
-                                                    echo create_form_input("select","mstatus","Marital Status",false,'',array("id"=>"mstatus"),$mstatus); 
                                                 ?>
                                             </div>
                                         </div>
