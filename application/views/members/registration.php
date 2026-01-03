@@ -11,11 +11,11 @@
 Nominee name -.... , Age..., relation.......
 Place/City of birth.......
 Gov. service about -.........yrs.
-Address - ....
-Bank name.....
-Account no  ........
-Ifs code.......
-Branch .......
+-- Address - ....
+-- Bank name.....
+-- Account no  ........
+-- Ifs code.......
+-- Branch .......
         Live.   Age            Death-->
 
             <div class="col-12">
@@ -218,6 +218,22 @@ Branch .......
                                                 ?>
                                             </div>
                                         </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <?php
+                                                    $attributes=array("id"=>"pob","Placeholder"=>"Place of Birth","autocomplete"=>"off");
+                                                    echo create_form_input("text","pob","Place of Birth",false,'',$attributes);  
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <?php
+                                                    $attributes=array("id"=>"govt_service","Placeholder"=>"Govt. Service (Years)","autocomplete"=>"off");
+                                                    echo create_form_input("text","govt_service","Govt. Service (Years)",false,'',$attributes);  
+                                                ?>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row hidden">
                                         <div class="col-md-4">
@@ -246,6 +262,32 @@ Branch .......
                                             <img id="view_photo" style="height:135px; width:120px;" >
                                         </div>
                                     </div>
+                                    <h3 class="header smaller lighter ">Nominee Details</h3>
+                                    <div class="row ">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <?php
+                                                    $attributes=array("id"=>"nom_name","Placeholder"=>"Nominee Name","autocomplete"=>"off");
+                                                    echo create_form_input("text","nom_name","Nominee Name",false,'',$attributes);  
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <?php
+                                                    $attributes=array("id"=>"nom_age","Placeholder"=>"Nominee Age","autocomplete"=>"off");
+                                                    echo create_form_input("text","nom_age","Nominee Age",false,'',$attributes);  
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <?php
+                                                    echo create_form_input("select","relation","Relation",false,'',array("id"=>"relation"),relation_dropdown()); 
+                                                ?>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <?php if($acc_details===false){ $acc_class="hidden"; }else{ $acc_class=""; } ?>
                                     <h3 class="header smaller lighter <?= $acc_class; ?>">Account Details</h3>
                                     <div class="row <?= $acc_class; ?>">
@@ -267,16 +309,6 @@ Branch .......
                                                 ?>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 hidden">
-                                            <div class="form-group">
-                                                <?php
-                                                    $attributes=array("id"=>"city","Placeholder"=>"City","autocomplete"=>"off");
-                                                    echo create_form_input("text","city","City",false,'',$attributes);  
-                                                ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row <?= $acc_class; ?>">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <?php

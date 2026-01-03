@@ -119,19 +119,11 @@
         }
     }
 
-    if(!function_exists('expensehead_dropdown')){
-        function expensehead_dropdown($where=array('t1.status'=>1),$new=false){
+    if(!function_exists('relation_dropdown')){
+        function relation_dropdown(){
             $CI = get_instance();
-            $options=array(''=>'Select Expense Head');
-            if($new){
-                $options['new']='Add New';
-            }
-            $expenseheads=$CI->expense->getexpenseheads($where);
-            if(!empty($expenseheads)){
-                foreach($expenseheads as $head){
-                    $options[$head['id']]=$head['name'];
-                }
-            }
+            $options=array(''=>'Select Relation','Father'=>'Father','Mother'=>'Mother','Wife'=>'Wife','Brother'=>'Brother',
+                           'Sister'=>'Sister','Son'=>'Son','Daughter'=>'Daughter');
             return $options;
         }
     }

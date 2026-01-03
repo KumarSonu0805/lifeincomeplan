@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Members extends MY_Controller {
 	var $epin_status=false; //false : No E-pin; 1 : E-pin Required; 2 : E-pin Not Required
 	var $tree=false; //false : No Tree; auto : Auto Position; position : Select Position; pool : Auto pool
-	var $acc_details=false; // Show account details in form
+	var $acc_details=true; // Show account details in form
 	var $reject_kyc=true;
 	
 	function __construct(){
@@ -260,6 +260,8 @@ class Members extends MY_Controller {
 				$memberdata['district']=$data['district'];
 				$memberdata['state']=$data['state'];
 				$memberdata['pincode']=$data['pincode'];
+				$memberdata['pob']=$data['pob'];
+				$memberdata['govt_service']=$data['govt_service'];
 				$memberdata['refid']=$data['refid'];
 				$memberdata['date']=$data['date'];
 				$memberdata['time']=date('H:i:s');
@@ -286,7 +288,12 @@ class Members extends MY_Controller {
 				else{
 					$treedata=$this->tree;
 				}
-				$data=array("userdata"=>$userdata,"memberdata"=>$memberdata,"accountdata"=>$accountdata,"treedata"=>$treedata);
+                
+                $nomineedata=array();
+                $nomineedata['name']=$data['nom_name'];
+                $nomineedata['age']=$data['nom_age'];
+                $nomineedata['relation']=$data['relation'];
+				$data=array("userdata"=>$userdata,"memberdata"=>$memberdata,"accountdata"=>$accountdata,"treedata"=>$treedata,"nomineedata"=>$nomineedata);
 				$result=$this->member->addmember($data);
 				if($result['status']===true){
 					$message = "Welcome $memberdata[name]! Thank you for joining ".PROJECT_NAME."! Your Username is $result[username] and Password is $result[password]. ";
