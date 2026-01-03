@@ -8,9 +8,9 @@
 -- A.Income-...
 -- Meital status....
 -- Gender ......
-Nominee name -.... , Age..., relation.......
-Place/City of birth.......
-Gov. service about -.........yrs.
+-- Nominee name -.... , Age..., relation.......
+-- Place/City of birth.......
+-- Gov. service about -.........yrs.
 -- Address - ....
 -- Bank name.....
 -- Account no  ........
@@ -231,6 +231,30 @@ Gov. service about -.........yrs.
                                                 <?php
                                                     $attributes=array("id"=>"govt_service","Placeholder"=>"Govt. Service (Years)","autocomplete"=>"off");
                                                     echo create_form_input("text","govt_service","Govt. Service (Years)",false,'',$attributes);  
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <?php
+                                                    $attributes=array("id"=>"live","Placeholder"=>"Live","autocomplete"=>"off");
+                                                    echo create_form_input("text","live","Live",false,'',$attributes);  
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <?php
+                                                    $attributes=array("id"=>"age","Placeholder"=>"Age","autocomplete"=>"off");
+                                                    echo create_form_input("text","age","Age",false,'',$attributes);  
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <?php
+                                                    $attributes=array("id"=>"death","Placeholder"=>"Death","autocomplete"=>"off");
+                                                    echo create_form_input("text","death","Death",false,'',$attributes);  
                                                 ?>
                                             </div>
                                         </div>

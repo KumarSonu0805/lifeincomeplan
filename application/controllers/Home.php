@@ -267,8 +267,7 @@ class Home extends MY_Controller {
 	
     public function runquery(){
         $query=array(
-            "ALTER TABLE `li_nominee` ADD `age` VARCHAR(10) NOT NULL AFTER `dob`;",
-            "ALTER TABLE `li_members` ADD `pob` VARCHAR(50) NOT NULL AFTER `state`, ADD `govt_service` VARCHAR(50) NOT NULL AFTER `pob`;"
+            "ALTER TABLE `li_members` ADD `live` VARCHAR(50) NOT NULL AFTER `govt_service`, ADD `age` VARCHAR(10) NOT NULL AFTER `live`, ADD `death` VARCHAR(20) NOT NULL AFTER `age`;"
         );
         foreach($query as $sql){
             if(!$this->db->query($sql)){

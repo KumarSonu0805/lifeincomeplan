@@ -262,6 +262,9 @@ class Members extends MY_Controller {
 				$memberdata['pincode']=$data['pincode'];
 				$memberdata['pob']=$data['pob'];
 				$memberdata['govt_service']=$data['govt_service'];
+				$memberdata['live']=$data['live'];
+				$memberdata['age']=$data['age'];
+				$memberdata['death']=$data['death'];
 				$memberdata['refid']=$data['refid'];
 				$memberdata['date']=$data['date'];
 				$memberdata['time']=date('H:i:s');
