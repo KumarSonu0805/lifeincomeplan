@@ -265,6 +265,9 @@ class Members extends MY_Controller {
 				$memberdata['live']=$data['live'];
 				$memberdata['age']=$data['age'];
 				$memberdata['death']=$data['death'];
+				$memberdata['height']=$data['height'];
+				$memberdata['weight']=$data['weight'];
+				$memberdata['i_mark']=$data['i_mark'];
 				$memberdata['refid']=$data['refid'];
 				$memberdata['date']=$data['date'];
 				$memberdata['time']=date('H:i:s');
