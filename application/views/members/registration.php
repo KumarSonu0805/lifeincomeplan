@@ -258,6 +258,30 @@
                                                 ?>
                                             </div>
                                         </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <?php
+                                                    $attributes=array("id"=>"height","Placeholder"=>"Height","autocomplete"=>"off");
+                                                    echo create_form_input("text","height","Height",false,'',$attributes);  
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <?php
+                                                    $attributes=array("id"=>"weight","Placeholder"=>"Weight","autocomplete"=>"off");
+                                                    echo create_form_input("text","weight","Weight",false,'',$attributes);  
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <?php
+                                                    $attributes=array("id"=>"i_mark","Placeholder"=>"Identification Mark","autocomplete"=>"off");
+                                                    echo create_form_input("text","i_mark","Identification Mark",false,'',$attributes);  
+                                                ?>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row hidden">
                                         <div class="col-md-4">
