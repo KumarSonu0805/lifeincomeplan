@@ -125,22 +125,26 @@ class Members extends MY_Controller {
 		$this->template->load('members','memberlist',$data);
 	}
 	
-	public function editmember($regid=NULL){
+	public function editmember($username=NULL){
 		checklogin();
-		if($this->session->role!='admin' || $regid===NULL){ redirect('members/downline/'); }
+		if($this->session->role!='admin' || $username===NULL){ redirect('members/memberlist/'); }
+		$member=$this->member->getmemberid($username,'all');
+		if($member['regid']==0){ redirect('members/memberlist/'); }
+		$regid=$member['regid'];
 		$data['title']="Edit Member";
 		$data['breadcrumb']=array("/"=>"Home",'members/downline/'=>"Downline Members");
 		$details=$this->member->getalldetails($regid);
 		
 		$options=array(""=>"Select Bank");
-		$banks=$this->member->getbanks();
+		$banks=$this->common->getbanks();
 		if(is_array($banks)){
 			foreach($banks as $bank){
 				$options[$bank['name']]=$bank['name'];
 			}
 		}
 		$data['banks']=$options;
-		$data['details']=$details;
+		$data=array_merge($data,$details);
+		$data['relations']=relation_dropdown();
 		$this->template->load('members','editmember',$data);
 	}
 	
@@ -282,7 +286,7 @@ class Members extends MY_Controller {
                 }
 				$accountdata['bank']=$data['bank'];
 				$accountdata['branch']=$data['branch'];
-				$accountdata['city']=$data['city'];
+				$accountdata['city']=$data['city']??'';
 				$accountdata['account_no']=$data['account_no'];
 				$accountdata['account_name']=$data['account_name'];
 				$accountdata['ifsc']=$data['ifsc'];
@@ -336,6 +340,10 @@ class Members extends MY_Controller {
 				$memberdata['name']=$data['name'];
 				$memberdata['dob']=$data['dob'];
 				$memberdata['father']=$data['father'];
+				$memberdata['mother']=$data['mother'];
+				$memberdata['occupation']=$data['occupation'];
+				$memberdata['qualification']=$data['qualification'];
+				$memberdata['a_income']=$data['a_income'];
 				$memberdata['gender']=$data['gender'];
 				$memberdata['mstatus']=$data['mstatus'];
 				$memberdata['mobile']=$data['mobile'];
@@ -345,13 +353,20 @@ class Members extends MY_Controller {
 				$memberdata['address']=$data['address'];
 				$memberdata['district']=$data['district'];
 				$memberdata['state']=$data['state'];
-				$memberdata['country']=$data['country'];
 				$memberdata['pincode']=$data['pincode'];
+				$memberdata['pob']=$data['pob'];
+				$memberdata['govt_service']=$data['govt_service'];
+				$memberdata['live']=$data['live'];
+				$memberdata['age']=$data['age'];
+				$memberdata['death']=$data['death'];
+				$memberdata['height']=$data['height'];
+				$memberdata['weight']=$data['weight'];
+				$memberdata['i_mark']=$data['i_mark'];
 			}
 			if(isset($data['bank'])){
 				$accountdata['bank']=$data['bank'];
 				$accountdata['branch']=$data['branch'];
-				$accountdata['city']=$data['city'];
+				$accountdata['city']=$data['city']??'';
 				$accountdata['account_no']=$data['account_no'];
 				$accountdata['account_name']=$data['account_name'];
 				$accountdata['ifsc']=$data['ifsc'];
@@ -367,7 +382,7 @@ class Members extends MY_Controller {
 				$this->session->set_flashdata("err_msg","Member Not Updated!");
 			}
 		}
-		redirect('members/downline/');
+		redirect('members/memberlist/');
 	}
 		
 	public function updatedocs(){
@@ -375,12 +390,24 @@ class Members extends MY_Controller {
 			$where['regid']=$this->input->post('regid');
 			$name=$this->input->post('name');
 			$upload_path="./assets/uploads/documents/";
-			$allowed_types="jpg|jpeg|png";
+            $allowed_types="jpg|jpeg|png|webp";
 			$file_name=$name;
-			$data['pan']=upload_file('pan',$upload_path,$allowed_types,$file_name.'_pan',10000);
-			$data['aadhar1']=upload_file('aadhar1',$upload_path,$allowed_types,$file_name.'_aadhar1',10000);
-			$data['aadhar2']=upload_file('aadhar2',$upload_path,$allowed_types,$file_name.'_aadhar2',10000);
-			$data['cheque']=upload_file('cheque',$upload_path,$allowed_types,$file_name.'_cheque',10000);
+			$upload=upload_file('pan',$upload_path,$allowed_types,$file_name.'_pan',10000);
+			if($upload['status']===true){
+				$data['pan']=$upload['path'];
+			}
+			$upload=upload_file('aadhar1',$upload_path,$allowed_types,$file_name.'_aadhar1',10000);
+			if($upload['status']===true){
+				$data['aadhar1']=$upload['path'];
+			}
+			$upload=upload_file('aadhar2',$upload_path,$allowed_types,$file_name.'_aadhar2',10000);
+			if($upload['status']===true){
+				$data['aadhar2']=$upload['path'];
+			}
+			$upload=upload_file('cheque',$upload_path,$allowed_types,$file_name.'_cheque',10000);
+			if($upload['status']===true){
+				$data['cheque']=$upload['path'];
+			}
 			foreach($data as $key=>$value){
 				if(empty($value)){ unset($data[$key]); }
 			}
@@ -394,7 +421,7 @@ class Members extends MY_Controller {
 				}
 			}
 		}
-		redirect('members/downline/');
+		redirect($_SERVER['HTTP_REFERER']);
 	}
     
 	public function activatemember(){
@@ -556,6 +583,47 @@ class Members extends MY_Controller {
                 }
             }
         }
+    }
+    
+	public function updatenominee(){
+        $url='members/memberlist';
+		if($this->input->post('updatenominee')!==NULL ){
+			$data=$this->input->post();
+			unset($data['updatenominee']);
+			$regid=$data['regid'];
+            //print_pre($data,true);
+			$result=$this->member->updatenomineedetails($data,['regid'=>$regid]);
+			if($result===true){
+				$this->session->set_flashdata("msg","Nominee Details Updated successfully!");
+			}
+			else{
+				$this->session->set_flashdata("err_msg","Member Not Updated!");
+			}
+		}
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+		
+    public function updatepassword(){
+        if($this->input->post('updatepassword')!==NULL){
+            $regid=$this->input->post('regid');
+            $password=$this->input->post('password');
+            $repassword=$this->input->post('retype');
+			if($password==$repassword){
+				$result=$this->account->updatepassword(array("password"=>$password),array("id"=>$regid));
+				if($result['status']===true){
+					$this->session->set_flashdata('msg',$result['message']);
+				}
+				else{
+					$error=$result['message'];
+					$this->session->set_flashdata('err_msg',$error);
+				}
+			}
+			else{
+				$error=$result['message'];
+				$this->session->set_flashdata('err_msg',"Password Do not Match!");
+			}
+        }
+        redirect($_SERVER['HTTP_REFERER']);
     }
     
     
