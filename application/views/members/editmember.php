@@ -71,7 +71,7 @@
                                                 <div class="form-group">
                                                     <?php
                                                         $attributes=array("id"=>"pan","Placeholder"=>"PAN No.","pattern"=>"[A-Za-z0-9]{10}","title"=>"Enter Valid Pan No.","autocomplete"=>"off","maxlength"=>"10");
-                                                        echo create_form_input("text","pan","PAN No.",true,$member['pan'],$attributes);  
+                                                        echo create_form_input("text","pan","PAN No.",false,$member['pan'],$attributes);  
                                                     ?>
                                                 </div>
                                             </div>
