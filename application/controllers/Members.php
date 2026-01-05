@@ -362,6 +362,7 @@ class Members extends MY_Controller {
 				$memberdata['height']=$data['height'];
 				$memberdata['weight']=$data['weight'];
 				$memberdata['i_mark']=$data['i_mark'];
+				$memberdata['policy_no']=$data['policy_no'];
 			}
 			if(isset($data['bank'])){
 				$accountdata['bank']=$data['bank'];

@@ -219,6 +219,14 @@
                                                     ?>
                                                 </div>
                                             </div>
+                                            <div class="col-md-4 <?= $member['status']==0?'d-none':'' ?>">
+                                                <div class="form-group">
+                                                    <?php
+                                                        $attributes=array("id"=>"policy_no","Placeholder"=>"Policy Number","autocomplete"=>"off");
+                                                        echo create_form_input("text","policy_no","Policy Number",false,$member['policy_no'],$attributes);  
+                                                    ?>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-12">
