@@ -305,7 +305,11 @@ class Members extends MY_Controller {
                     if(empty($data['status'][$key]) && empty($data['age'][$key])){
                         continue;
                     }
-                    $familydata[]=array('regid'=>'','relation'=>$relation,'status'=>$data['status'][$key],'age'=>$data['age'][$key],'health'=>$data['health'][$key],'death_date'=>$data['death_date'][$key]??NULL,'type_of_death'=>$data['type_of_death'][$key]??NULL);
+                    $death_date=empty($data['death_date'][$key])?NULL:$data['death_date'][$key];
+                    $type_of_death=empty($data['type_of_death'][$key])?NULL:$data['type_of_death'][$key];
+                    $familydata[]=array('regid'=>$regid,'relation'=>$relation,'status'=>$data['status'][$key],
+                                        'age'=>$data['age'][$key],'health'=>$data['health'][$key],'death_date'=>$death_date,
+                                        'type_of_death'=>$type_of_death);
                 }
 				$data=array("userdata"=>$userdata,"memberdata"=>$memberdata,"accountdata"=>$accountdata,"treedata"=>$treedata,"nomineedata"=>$nomineedata,"familydata"=>$familydata);
                 //print_pre($data,true);
@@ -618,7 +622,11 @@ class Members extends MY_Controller {
                 if(empty($data['status'][$key]) && empty($data['age'][$key])){
                     continue;
                 }
-                $familydata[]=array('regid'=>$regid,'relation'=>$relation,'status'=>$data['status'][$key],'age'=>$data['age'][$key],'health'=>$data['health'][$key],'death_date'=>$data['death_date'][$key]??NULL,'type_of_death'=>$data['type_of_death'][$key]??NULL);
+                $death_date=empty($data['death_date'][$key])?NULL:$data['death_date'][$key];
+                $type_of_death=empty($data['type_of_death'][$key])?NULL:$data['type_of_death'][$key];
+                $familydata[]=array('regid'=>$regid,'relation'=>$relation,'status'=>$data['status'][$key],
+                                    'age'=>$data['age'][$key],'health'=>$data['health'][$key],'death_date'=>$death_date,
+                                    'type_of_death'=>$type_of_death);
             }
 
             if(empty($familydata)){
