@@ -267,7 +267,19 @@ class Home extends MY_Controller {
 	
     public function runquery(){
         $query=array(
-            "ALTER TABLE `li_members` ADD `height` VARCHAR(50) NOT NULL AFTER `age`, ADD `weight` VARCHAR(10) NOT NULL AFTER `height`, ADD `i_mark` VARCHAR(20) NOT NULL AFTER `weight`;"
+            "CREATE TABLE `li_family` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `regid` int(11) NOT NULL,
+ `relation` varchar(50) NOT NULL,
+ `status` varchar(50) NOT NULL,
+ `age` varchar(50) NOT NULL,
+ `health` varchar(50) NOT NULL,
+ `death_date` date DEFAULT NULL,
+ `type_of_death` varchar(100) NOT NULL,
+ PRIMARY KEY (`id`),
+ KEY `FK_famreg` (`regid`),
+ CONSTRAINT `FK_famreg` FOREIGN KEY (`regid`) REFERENCES `li_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1"
         );
         foreach($query as $sql){
             if(!$this->db->query($sql)){

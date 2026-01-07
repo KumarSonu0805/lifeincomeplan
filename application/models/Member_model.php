@@ -31,6 +31,7 @@ class Member_model extends CI_Model{
 		$accountdata=$data['accountdata'];
 		$nomineedata=$data['nomineedata'];
 		$treedata=$data['treedata'];
+		$familydata=$data['familydata'];
 		$user=$this->adduser($userdata);
 		if(is_array($user) && $user['status']===true){
 			$regid=$user['regid'];
@@ -40,12 +41,18 @@ class Member_model extends CI_Model{
 			$memberdata['regid']=$regid;
 			$accountdata['regid']=$regid;
 			$nomineedata['regid']=$regid;
+            if(!empty($familydata)){
+                foreach($familydata as $key=>$single){
+                    $familydata[$key]['regid']=$regid;
+                }
+            }
 			
 			$memberdata['added_on']=date('Y-m-d H:i:s');
 			
 			$this->db->insert("members",$memberdata);
 			$this->db->insert("acc_details",$accountdata);
 			$this->db->insert("nominee",$nomineedata);
+			$this->db->insert_batch("family",$familydata);
             
             $this->addlevel($regid);
 		}

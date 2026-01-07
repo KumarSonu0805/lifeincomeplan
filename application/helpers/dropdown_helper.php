@@ -122,8 +122,8 @@
     if(!function_exists('relation_dropdown')){
         function relation_dropdown(){
             $CI = get_instance();
-            $options=array(''=>'Select Relation','Father'=>'Father','Mother'=>'Mother','Wife'=>'Wife','Brother'=>'Brother',
-                           'Sister'=>'Sister','Son'=>'Son','Daughter'=>'Daughter');
+            $options=array(''=>'Select Relation','Father'=>'Father','Mother'=>'Mother','Husband/Wife'=>'Husband/Wife','Son'=>'Son','Daughter'=>'Daughter','Brother'=>'Brother',
+                           'Sister'=>'Sister');
             return $options;
         }
     }

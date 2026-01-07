@@ -134,7 +134,7 @@
                                             <div class="form-group">
                                                 <?php
                                                     $attributes=array("id"=>"pan","Placeholder"=>"PAN No.","pattern"=>"[A-Za-z0-9]{10}","title"=>"Enter Valid Pan No.","autocomplete"=>"off","maxlength"=>"10");
-                                                    echo create_form_input("text","pan","PAN No.",true,'',$attributes);  
+                                                    echo create_form_input("text","pan","PAN No.",false,'',$attributes);  
                                                 ?>
                                             </div>
                                         </div>
@@ -231,30 +231,6 @@
                                                 <?php
                                                     $attributes=array("id"=>"govt_service","Placeholder"=>"Govt. Service (Years)","autocomplete"=>"off");
                                                     echo create_form_input("text","govt_service","Govt. Service (Years)",false,'',$attributes);  
-                                                ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <?php
-                                                    $attributes=array("id"=>"live","Placeholder"=>"Live","autocomplete"=>"off");
-                                                    echo create_form_input("text","live","Live",false,'',$attributes);  
-                                                ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <?php
-                                                    $attributes=array("id"=>"age","Placeholder"=>"Age","autocomplete"=>"off");
-                                                    echo create_form_input("text","age","Age",false,'',$attributes);  
-                                                ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <?php
-                                                    $attributes=array("id"=>"death","Placeholder"=>"Death","autocomplete"=>"off");
-                                                    echo create_form_input("text","death","Death",false,'',$attributes);  
                                                 ?>
                                             </div>
                                         </div>
@@ -379,6 +355,75 @@
                                                     $attributes=array("id"=>"ifsc","Placeholder"=>"IFSC Code","autocomplete"=>"off");
                                                     echo create_form_input("text","ifsc","IFSC Code",false,'',$attributes);  
                                                 ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php
+                                        $relations=relation_dropdown();
+                                    ?>
+                                    <h3 class="header smaller lighter">Family Status</h3>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Relation</th>
+                                                            <th>Living/Dead</th>
+                                                            <th>Age</th>
+                                                            <th>Health</th>
+                                                            <th>Death Date</th>
+                                                            <th>Type of Death</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                            foreach($relations as $key=>$relation){
+                                                                if($key==''){continue;}
+                                                        ?>
+                                                        <tr>
+                                                            <td>
+                                                                <?php
+                                                                    $attributes=array('readonly'=>'readonly');
+                                                                    echo create_form_input("text","relations[]","",false,$relation,$attributes);  
+                                                                ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php
+                                                                    $attributes=array();
+                                                                    echo create_form_input("select","status[]","",false,'',$attributes,[''=>'Select','Living'=>'Living','Dead'=>'Dead']);  
+                                                                ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php
+                                                                    $attributes=array();
+                                                                    echo create_form_input("text","age[]","",false,'',$attributes);  
+                                                                ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php
+                                                                    $attributes=array();
+                                                                    echo create_form_input("select","health[]","",false,'Good',$attributes,['Good'=>'Good','Bad'=>'Bad']);  
+                                                                ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php
+                                                                    $attributes=array();
+                                                                    echo create_form_input("date","death_date[]","",false,'',$attributes);  
+                                                                ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php
+                                                                    $attributes=array();
+                                                                    echo create_form_input("text","type_of_death[]","",false,'',$attributes);  
+                                                                ?>
+                                                            </td>
+                                                        </tr>
+                                                        <?php
+                                                            }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>

@@ -236,7 +236,7 @@ class Members extends MY_Controller {
 	public function addmember(){
 		if($this->input->post('addmember')!==NULL){
 			$data=$this->input->post();
-			$userdata=$memberdata=$accountdata=$treedata=array();
+			$userdata=$memberdata=$accountdata=$treedata=$familydata=array();
 			if($data['refid']>0){
 				$userdata['mobile']=$data['mobile'];
 				$userdata['name']=$data['name'];
@@ -266,9 +266,6 @@ class Members extends MY_Controller {
 				$memberdata['pincode']=$data['pincode'];
 				$memberdata['pob']=$data['pob'];
 				$memberdata['govt_service']=$data['govt_service'];
-				$memberdata['live']=$data['live'];
-				$memberdata['age']=$data['age'];
-				$memberdata['death']=$data['death'];
 				$memberdata['height']=$data['height'];
 				$memberdata['weight']=$data['weight'];
 				$memberdata['i_mark']=$data['i_mark'];
@@ -303,8 +300,17 @@ class Members extends MY_Controller {
                 $nomineedata['name']=$data['nom_name'];
                 $nomineedata['age']=$data['nom_age'];
                 $nomineedata['relation']=$data['relation'];
-				$data=array("userdata"=>$userdata,"memberdata"=>$memberdata,"accountdata"=>$accountdata,"treedata"=>$treedata,"nomineedata"=>$nomineedata);
+                
+                foreach($data['relations'] as $key=>$relation){
+                    if(empty($data['status'][$key]) && empty($data['age'][$key])){
+                        continue;
+                    }
+                    $familydata[]=array('regid'=>'','relation'=>$relation,'status'=>$data['status'][$key],'age'=>$data['age'][$key],'health'=>$data['health'][$key],'death_date'=>$data['death_date'][$key]??NULL,'type_of_death'=>$data['type_of_death'][$key]??NULL);
+                }
+				$data=array("userdata"=>$userdata,"memberdata"=>$memberdata,"accountdata"=>$accountdata,"treedata"=>$treedata,"nomineedata"=>$nomineedata,"familydata"=>$familydata);
+                //print_pre($data,true);
 				$result=$this->member->addmember($data);
+                //print_pre($result,true);
 				if($result['status']===true){
 					$message = "Welcome $memberdata[name]! Thank you for joining ".PROJECT_NAME."! Your Username is $result[username] and Password is $result[password]. ";
 					$message.= "Visit our site ".str_replace('members.','',base_url()).".";
