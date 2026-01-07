@@ -362,9 +362,6 @@ class Members extends MY_Controller {
 				$memberdata['pincode']=$data['pincode'];
 				$memberdata['pob']=$data['pob'];
 				$memberdata['govt_service']=$data['govt_service'];
-				$memberdata['live']=$data['live'];
-				$memberdata['age']=$data['age'];
-				$memberdata['death']=$data['death'];
 				$memberdata['height']=$data['height'];
 				$memberdata['weight']=$data['weight'];
 				$memberdata['i_mark']=$data['i_mark'];
@@ -606,6 +603,36 @@ class Members extends MY_Controller {
 			else{
 				$this->session->set_flashdata("err_msg","Member Not Updated!");
 			}
+		}
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+    
+	public function updatefamily(){
+        $url='members/memberlist';
+		if($this->input->post('updatefamily')!==NULL ){
+			$data=$this->input->post();
+			$regid=$data['regid'];
+			unset($data['updatefamily']);
+            $familydata=array();
+            foreach($data['relations'] as $key=>$relation){
+                if(empty($data['status'][$key]) && empty($data['age'][$key])){
+                    continue;
+                }
+                $familydata[]=array('regid'=>$regid,'relation'=>$relation,'status'=>$data['status'][$key],'age'=>$data['age'][$key],'health'=>$data['health'][$key],'death_date'=>$data['death_date'][$key]??NULL,'type_of_death'=>$data['type_of_death'][$key]??NULL);
+            }
+
+            if(empty($familydata)){
+                $this->db->delete("family",['regid'=>$regid]);
+            }
+            else{
+                $result=$this->member->updatefamilydetails($familydata);
+                if($result===true){
+                    $this->session->set_flashdata("msg","Family Details Updated successfully!");
+                }
+                else{
+                    $this->session->set_flashdata("err_msg","Member Not Updated!");
+                }
+            }
 		}
 		redirect($_SERVER['HTTP_REFERER']);
 	}

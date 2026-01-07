@@ -174,30 +174,6 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <?php
-                                                        $attributes=array("id"=>"live","Placeholder"=>"Live","autocomplete"=>"off");
-                                                        echo create_form_input("text","live","Live",false,$member['live'],$attributes);  
-                                                    ?>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <?php
-                                                        $attributes=array("id"=>"age","Placeholder"=>"Age","autocomplete"=>"off");
-                                                        echo create_form_input("text","age","Age",false,$member['age'],$attributes);  
-                                                    ?>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <?php
-                                                        $attributes=array("id"=>"death","Placeholder"=>"Death","autocomplete"=>"off");
-                                                        echo create_form_input("text","death","Death",false,$member['death'],$attributes);  
-                                                    ?>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <?php
                                                         $attributes=array("id"=>"height","Placeholder"=>"Height","autocomplete"=>"off");
                                                         echo create_form_input("text","height","Height",false,$member['height'],$attributes);  
                                                     ?>
@@ -417,6 +393,100 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <input type="hidden" name="name" value="<?= $member['name'] ?>">
+                                                <?= $button; ?>
+                                            </div>
+                                        </div>
+                                    <?= form_close() ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-primary card-outline">
+                            <a class="d-block w-100 collapsed" data-toggle="collapse" href="#collapseEight" aria-expanded="false">
+                                <div class="card-header">
+                                    <h4 class="card-title w-100">
+                                        Update Family
+                                    </h4>
+                                </div>
+                            </a>
+                            <div id="collapseEight" class="collapse" data-parent="#accordion" style="">
+                                <div class="card-body">
+                                    <?php                                    
+                                        $button ='<input type="hidden" name="regid" value="'.$member['regid'].'">';
+                                        $button.='<button type="submit" name="updatefamily" class="btn btn-sm btn-success">Update KYC Documents</button>';
+                                        $button.=' <a href="'.base_url('members/memberlist/').'" class="btn btn-sm btn-danger">Cancel</a>';
+                                    ?>
+                                    <?= form_open_multipart('members/updatefamily',''); ?>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Relation</th>
+                                                                <th>Living/Dead</th>
+                                                                <th>Age</th>
+                                                                <th>Health</th>
+                                                                <th>Death Date</th>
+                                                                <th>Type of Death</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php
+                                                                $rels=empty($family_details)?array():array_column($family_details,'relation');
+                                                                $relations=relation_dropdown();
+                                                                foreach($relations as $key=>$relation){
+                                                                    if($key==''){continue;}
+                                                                    $index=array_search($relation,$rels);
+                                                                    $index=$index===false?-1:$index;
+                                                            ?>
+                                                            <tr>
+                                                                <td>
+                                                                    <?php
+                                                                        $attributes=array('readonly'=>'readonly');
+                                                                        echo create_form_input("text","relations[]","",false,$relation,$attributes);  
+                                                                    ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php
+                                                                        $attributes=array();
+                                                                        echo create_form_input("select","status[]","",false,$family_details[$index]['status']??'',$attributes,[''=>'Select','Living'=>'Living','Dead'=>'Dead']);  
+                                                                    ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php
+                                                                        $attributes=array();
+                                                                        echo create_form_input("text","age[]","",false,$family_details[$index]['age']??'',$attributes);  
+                                                                    ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php
+                                                                        $attributes=array();
+                                                                        echo create_form_input("select","health[]","",false,$family_details[$index]['status']??'Good',$attributes,['Good'=>'Good','Bad'=>'Bad']);  
+                                                                    ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php
+                                                                        $attributes=array();
+                                                                        echo create_form_input("date","death_date[]","",false,$family_details[$index]['death_date']??'',$attributes);  
+                                                                    ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php
+                                                                        $attributes=array();
+                                                                        echo create_form_input("text","type_of_death[]","",false,$family_details[$index]['type_of_death']??'',$attributes);  
+                                                                    ?>
+                                                                </td>
+                                                            </tr>
+                                                            <?php
+                                                                }
+                                                            ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
                                                 <?= $button; ?>
                                             </div>
                                         </div>

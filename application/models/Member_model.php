@@ -152,7 +152,8 @@ class Member_model extends CI_Model{
 		$member['sname']=$sponsor['user']['name'];
 		$acc_details=$this->getaccdetails($regid);
 		$nominee_details=$this->getnomineedetails($regid);
-		$result=array("member"=>$member,"acc_details"=>$acc_details,"nominee_details"=>$nominee_details);
+		$family_details=$this->getfamilydetails($regid);
+		$result=array("member"=>$member,"acc_details"=>$acc_details,"nominee_details"=>$nominee_details,"family_details"=>$family_details);
 		return $result;
 	}
 	
@@ -166,6 +167,10 @@ class Member_model extends CI_Model{
 	
 	public function getnomineedetails($regid){
 		return $this->db->get_where("nominee",array("regid"=>$regid))->unbuffered_row('array');
+	}
+	
+	public function getfamilydetails($regid){
+		return $this->db->get_where("family",array("regid"=>$regid))->result_array();
 	}
 	
 	public function getphoto(){
@@ -261,6 +266,20 @@ class Member_model extends CI_Model{
 		else{
 			$result=$this->db->update("nominee",$data,$where);
 		}
+		if($result){
+			return true;
+		}
+		else{
+			return $this->db->error();
+		}
+	}
+	
+	public function updatefamilydetails($data){
+		$checkfamily=$this->db->get_where("family",['regid'=>$data[0]['regid']])->num_rows();
+		if($checkfamily!=0){
+			$result=$this->db->delete("family",['regid'=>$data[0]['regid']]);
+		}
+        $result=$this->db->insert_batch("family",$data);
 		if($result){
 			return true;
 		}
