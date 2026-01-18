@@ -9,7 +9,7 @@
             <th>Account No</th>
             <th>IFSC Code</th>
             <th>Amount</th>
-            <th>TDS (5%)</th>
+            <th>Processing Fee (5%)</th>
             <th>Admin Charge (5%)</th>
             <th>Paid Amount</th>
         </tr>

@@ -14,7 +14,7 @@
                                     <h3>
                                     	E-Wallet Current Balance : <span class="text-success"><i class="fa fa-inr"></i> <?php echo $this->amount->toDecimal($wallet['actualwallet']); ?></span>
                                     </h3>
-                                    <p class="text-danger">* <?= TDS ?>% TDS and <?= ADMIN_CHARGE ?>% Admin Charge Will be deducted</p>
+                                    <p class="text-danger">* <?= TDS ?>% Processing Fee and <?= ADMIN_CHARGE ?>% Admin Charge Will be deducted</p>
                                 </section>
                             </div>
                         </div><br>
