@@ -24,14 +24,14 @@ class Wallet_model extends CI_Model{
             $date=date('Y-m-d');
         }
         if($this->status){
-            $where="t1.refid='$regid' and status='1' and date(t1.activation_date)<='$date' and t1.regid not in 
+            $where="t1.refid='$regid' and date(t1.activation_date)<='$date' and t1.regid not in 
                     (SELECT member_id from ".TP."wallet where regid='$regid' and remarks='Direct Income')";
             $newdirects=$this->member->getdirectmembers($regid);
             $added=$this->db->get_where('wallet',['regid'=>$regid,'remarks'=>'Direct Income'])->result_array();
             $member_ids=!empty($added)?array_column($added,'member_id'):array();
             if(!empty($newdirects)){
                 foreach($newdirects as $member){
-                    if(!in_array($member['regid'],$member_ids)){
+                    if($member['status']==1 && !in_array($member['regid'],$member_ids)){
                         $member_id=$member['regid'];
                         $amount=$this->direct;
                         if($amount>0){
