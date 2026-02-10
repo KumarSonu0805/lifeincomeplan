@@ -222,7 +222,14 @@ class Wallet extends MY_Controller {
 	public function approvepayout(){
 		if($this->input->post('request_id')!==NULL){
 			$request_id=$this->input->post('request_id');
-			$result=$this->wallet->approvepayout($request_id);
+			$upload_path="./assets/uploads/wallet/";
+			$allowed_types="jpg|jpeg|png";
+			$file_name='withdrawal';//$name;
+			$upload=upload_file('file',$upload_path,$allowed_types,$file_name.'_file',10000);
+			if($upload['status']===true){
+                $data['file']=$upload['path'];
+            }
+			$result=$this->wallet->approvepayout($request_id,$data['file']);
 			if($result===true){
 				$this->session->set_flashdata("msg","Payout Approved successfully!");
 			}

@@ -74,8 +74,11 @@
                                                                         if(!isset($register)){
                                                                 ?>
                                                                 <td class="">
-                                                                    <form action="<?php echo base_url('wallet/approvepayout'); ?>" method="post" onSubmit="return validate('accept');" class="float-left" style="margin-right:5px;">
-                                                                        <button type="submit" value="<?php echo $member['id'] ?>" name="request_id" class="btn btn-sm btn-success">Approve</button>
+                                                                    <form action="<?php echo base_url('wallet/approvepayout'); ?>" method="post" onSubmit="return validate('accept');" enctype="multipart/form-data" class="float-left" style="margin-right:5px;">
+                                                                        <input type="file" name="file" id="file" class="d-none" required>
+                                                                        <button type="button" value="<?php echo $member['id'] ?>" name="request_id" class="btn btn-sm btn-success" onClick="$(this).closest('form').next().addClass('d-none');$(this).prev().removeClass('d-none');$(this).next().removeClass('d-none'); $(this).attr('type','submit')">Approve</button>
+                                                                        
+                                                                        <button type="button" class="btn btn-sm btn-danger d-none" onClick="$(this).closest('form').next().removeClass('d-none');$(this).prev().prev().addClass('d-none');$(this).addClass('d-none'); $(this).prev().attr('type','button');">Cancel</button>
                                                                     </form>
                                                                     <form action="<?php echo base_url('wallet/rejectpayout'); ?>" method="post" onSubmit="return validate('reject');" class="float-left">
                                                                         <textarea name="reason" class="form-control d-none" required></textarea>

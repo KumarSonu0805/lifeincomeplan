@@ -232,10 +232,14 @@ class Wallet_model extends CI_Model{
 		return $array;
 	}
 	
-	public function approvepayout($id){
+	public function approvepayout($id,$file=NULL){
 		$date=date('Y-m-d');
 		$updated_on=date('Y-m-d H:i:s');
-		if($this->db->update("withdrawals",array("status"=>1,"approve_date"=>$date,"updated_on"=>$updated_on),array("id"=>$id))){
+        $data=array("status"=>1,"approve_date"=>$date,"updated_on"=>$updated_on);
+        if($file!==NULL){
+            $data['file']=$file;
+        }
+		if($this->db->update("withdrawals",$data,array("id"=>$id))){
 			return true;
 		}
 		else{
