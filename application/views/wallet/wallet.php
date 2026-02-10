@@ -42,7 +42,7 @@
                                                             <th>Sl No.</th>
                                                             <th>Request Date</th>
                                                             <th>Amount</th>
-                                                            <th>TDS</th>
+                                                            <th>Processing Fee</th>
                                                             <th>Admin Charge</th>
                                                             <th>Payable Amount</th>
                                                             <th>Approve Date</th>
